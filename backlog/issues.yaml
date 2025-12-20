@@ -1,0 +1,37 @@
+version: 1
+
+labels:
+  - name: "type:feature"
+    color: "1D76DB"
+    description: "New functionality"
+  - name: "type:bug"
+    color: "D73A4A"
+    description: "Bug fix"
+  - name: "week:01"
+    color: "C5DEF5"
+    description: "Week 1 work"
+
+milestones:
+  - title: "Sprint 1"
+    description: "Scaffolding + first feature"
+  - title: "Sprint 2"
+    description: "Persistence + testing"
+
+issues:
+  - id: "W01-ENV"
+    title: "Set up dev environment and run starter project"
+    body: |
+      **Goal:** Get the project building locally.
+
+      **Acceptance Criteria**
+      - [ ] Project builds
+      - [ ] App runs
+    labels: ["week:01", "type:feature"]
+    milestone: "Sprint 1"
+
+  - id: "W01-README"
+    title: "Read the project README and answer the setup questions"
+    body: |
+      Answer the questions at the bottom of the README in a comment on this issue.
+    labels: ["week:01", "type:feature"]
+    milestone: "Sprint 1"

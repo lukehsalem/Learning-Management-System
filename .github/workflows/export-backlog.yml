@@ -1,0 +1,43 @@
+name: Export Backlog to YAML
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml requests
+
+      - name: Export issues to backlog/issues.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BACKLOG_LABEL: course-backlog
+          OUTPUT_FILE: backlog/issues.yml
+          STRIP_ID_MARKER_FROM_BODY: "true"
+        run: |
+          python scripts/export_backlog.py
+
+      - name: Create PR with updated YAML
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Export backlog to YAML"
+          title: "Export backlog to backlog/issues.yml"
+          body: "Automated export from the issue tracker."
+          branch: "chore/export-backlog"
+          delete-branch: true

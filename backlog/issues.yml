@@ -1,37 +1,36 @@
 version: 1
-
 labels:
-  - name: "type:feature"
-    color: "1D76DB"
-    description: "New functionality"
-  - name: "type:bug"
-    color: "D73A4A"
-    description: "Bug fix"
-  - name: "week:01"
-    color: "C5DEF5"
-    description: "Week 1 work"
-
+- name: course-backlog
+  color: 782F40
+  description: These are work items that contribute to the overall course grade
+- name: sprint:01
+  color: C5DEF5
+  description: Sprint 1 work
+- name: type:feature
+  color: 1D76DB
+  description: New functionality
 milestones:
-  - title: "Sprint 1"
-    description: "Scaffolding + first feature"
-  - title: "Sprint 2"
-    description: "Persistence + testing"
-
+- title: Sprint 1
+  description: Scaffolding + first feature
+  state: open
 issues:
-  - id: "W01-ENV"
-    title: "Set up dev environment and run starter project"
-    body: |
-      **Goal:** Get the project building locally.
-
-      **Acceptance Criteria**
-      - [ ] Project builds
-      - [ ] App runs
-    labels: ["week:01", "type:feature"]
-    milestone: "Sprint 1"
-
-  - id: "W01-README"
-    title: "Read the project README and answer the setup questions"
-    body: |
-      Answer the questions at the bottom of the README in a comment on this issue.
-    labels: ["week:01", "type:feature"]
-    milestone: "Sprint 1"
+- id: ISSUE-3
+  title: Create a CLI menu that allows a user to choose if they are a student or teacher
+  body: This constitutes the first menu in the application, which allows a user to
+    differentiate themselves as a user who should see the application as a student
+    or a teacher.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-4
+  title: Create a CLI menu that shows the teacher sub-menu
+  body: Teachers should be able to choose between adding a new course or selecting
+    an existing course using this menu. Selection should be based on a stable Id and
+    not the index of the course in a list.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1

@@ -4,16 +4,191 @@ labels:
   color: 782F40
   description: These are work items that contribute to the overall course grade
 - name: sprint:01
-  color: C5DEF5
+  color: FFFFFF
   description: Sprint 1 work
+- name: sprint:02
+  color: FFFFFF
+  description: ''
+- name: sprint:03
+  color: ffffff
+  description: ''
+- name: sprint:04
+  color: ffffff
+  description: ''
+- name: sprint:05
+  color: ffffff
+  description: ''
+- name: sprint:06
+  color: ffffff
+  description: ''
+- name: sprint:07
+  color: ffffff
+  description: ''
 - name: type:feature
-  color: 1D76DB
+  color: CEB888
   description: New functionality
 milestones:
 - title: Sprint 1
-  description: Scaffolding + first feature
+  description: Basic syntax + CLI + navigating through CLI menus
+  state: open
+- title: Sprint 2
+  description: Advanced syntax + new CLI features
+  state: open
+- title: Sprint 3
+  description: ''
+  state: open
+- title: Sprint 4
+  description: ''
+  state: open
+- title: Sprint 5
+  description: ''
+  state: open
+- title: Sprint 6
+  description: ''
+  state: open
+- title: Sprint 7
+  description: ''
   state: open
 issues:
+- id: ISSUE-11
+  title: A teacher should be able to enroll a student to a course
+  body: Teachers should be able to add a student to a course from the main menu of
+    the course. This includes adding a student who is not already in the system as
+    well as adding a student that already exists for another course. The application
+    should only store **one** list of students and shallow copy those students into
+    courses during enrollment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+- id: ISSUE-7
+  title: Create a CLI menu that allows a student to interact with their classes
+  body: The student main menu should allow a student to select one of the classes
+    they are enrolled in and see the main menu for that course.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+- id: ISSUE-10
+  title: A teacher should be able to add a new course to their list of courses
+  body: A teacher should be able to add a course from the main teacher menu. When
+    creating a course, the user should only need to specify the name, code, and description
+    of the course.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-12
+  title: A user should be able to unenroll a student
+  body: 'A student should be able to unenroll themselves from the course homepage.
+
+
+    A teacher should be able to unenroll a selected student from the course homepage.'
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-13
+  title: A teacher should be able to add an assignment for a course
+  body: Teachers should be able to add assignments for a course from the course main
+    menu
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-14
+  title: A student should be able to submit a submission for an assignment
+  body: From their course menu, students should be able to add a submission for an
+    assignment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-15
+  title: A teacher should be able to grade a student's submission
+  body: Teachers should be able to review and grade a student's submission for an
+    assignment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-16
+  title: Teachers should be able to delete an assignment
+  body: Teachers should be able to delete an assignment, which should also delete
+    any student submissions for that assignment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-17
+  title: Teachers should be able to edit an assignment
+  body: Teachers should be able to edit an assignment already added to a course.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-18
+  title: Teachers should be able to add modules to courses
+  body: Teachers should be able to add modules to a course from the course main menu
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-19
+  title: Teachers should be able to add content to a module
+  body: The application should allow a teacher to add a string to the list of strings
+    that represent module content
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-20
+  title: Teachers should be able to modify content in a module
+  body: The application should allow a teacher to update a string in the list of strings
+    that represent module content
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-21
+  title: Teachers should be able to remove content from a module
+  body: The application should allow a teacher to remove a string from the list of
+    strings that represent module content
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-22
+  title: Teachers should be able to delete a course from their list of courses
+  body: Teachers should be able to delete a course, which deletes all content of the
+    course except for the students that were enrolled in the course. Those students
+    should continue to exist in the system, be enrolled in their other courses, and
+    be available to enroll in other courses.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-23
+  title: Teachers should be able to update the description of a course
+  body: Teachers should be able to update the description of a course from the course's
+    main menu
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
 - id: ISSUE-3
   title: Create a CLI menu that allows a user to choose if they are a student or teacher
   body: This constitutes the first menu in the application, which allows a user to
@@ -34,3 +209,455 @@ issues:
   - sprint:01
   - type:feature
   milestone: Sprint 1
+- id: ISSUE-6
+  title: Create a CLI menu that allows the user to select an existing student to proxy
+    as
+  body: Once selected, the user should be redirected to the student sub-menu as if
+    they had logged into the application as the selected user.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-8
+  title: Create a CLI menu that serves as the main menu for a course
+  body: 'The menu should show the name and code of the course as well as let the student:
+
+
+    - See all modules and module content
+
+    - See all assignments
+
+    - See other students in the course
+
+    - See course schedule - a list of assignments + their due dates'
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-9
+  title: Create models for the application
+  body: 'Create public C# classes with properties that cover the following concepts.
+    All Id values must be integers that are unique per object.
+
+
+    **User**
+
+    - Id
+
+    - Name
+
+    - Code (equivalent to FSUID)
+
+
+    **Student**
+
+    Student should be derived from User and add the following properties:
+
+    - Classification
+
+
+    **Instructor**
+
+    Instructor should be derived from User and add the following properties:
+
+    - YearsOfExperience
+
+
+    **Course**
+
+    - Id
+
+    - Code
+
+    - Name
+
+    - Description
+
+    - Roster (list of students)
+
+    - Modules (list of modules)
+
+    - Assignments (list of assignments)
+
+
+    **Module**
+
+    - Id
+
+    - Content (list of strings)
+
+
+    **Assignment**
+
+    - Id
+
+    - Name
+
+    - Description
+
+    - Available Points
+
+    - DueDate
+
+    - Submissions (list of submissions)
+
+
+    **Submission**
+
+    - Id
+
+    - StudentId
+
+    - AssignmentId
+
+    - Content (string)
+
+    - SubmissionDate
+
+    '
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-24
+  title: Module content should support assignments, files, and pages
+  body: 'Use inheritance to allow course modules to support:
+
+
+    - Assignments - an assignment that is embedded directly in a module
+
+    - Files - a file that shows its name and allows the user to open the file itself
+    directly from the module
+
+    - Pages - pages represent an abstraction that support the previous string-based
+    content and only need to show the content of a string'
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-25
+  title: The application should support assignment groups
+  body: Teachers should be able to manage assignment groups such that they can add,
+    edit, list, and delete groups. Teachers should also be able to add assignments
+    to a group.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-26
+  title: Assignment groups should allow weighted grades
+  body: Teachers should be able to provide a weight to an assignment group such that
+    the final course grade is calculated using that weight.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-27
+  title: Teachers should be able to copy a course
+  body: Copying a course should create a deep copy of all content in the course except
+    for the roster of students and student submissions.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-28
+  title: The application should require courses to be assigned a semester
+  body: Add a semester property to the Course model.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-29
+  title: Teachers should see their courses by semester
+  body: When viewing courses, teachers should see them organized by semester. Teachers
+    should be able to filter and sort their courses by term.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-30
+  title: Courses should support multiple sections
+  body: Add a section property to the Course model.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-31
+  title: Students should be able to see their grades for a course
+  body: Students should be able to see their grades by individual assignment as well
+    as their (potentially weighted) average in the course.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-32
+  title: Teachers should be able to grade student submissions
+  body: Teachers should be able to assess a grade to student submissions using either
+    percentages or total points out of the available number of points. Teachers should
+    also be able to leave a comment to provide feedback on the student's submission.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-33
+  title: The application should have a main menu in MAUI.NET
+  body: The main menu should have two buttons, one to use the application as a teacher
+    and one to use the application as a student.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-34
+  title: The student menu should allow the user to select a student from a list of
+    available students
+  body: Upon selection, the user should see courses that the student is enrolled in
+    and be able to interact with those courses
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-35
+  title: The student and teacher menus should allow the user to return to the main
+    menu
+  body: The application should avoid user traps by allowing the user to return to
+    the main menu from either the student or teacher menus
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-36
+  title: The student view should display a list of courses and allow a student to
+    select a course to interact with
+  body: When a student chooses a course from the list, they should be taken to a detail
+    view of the course that allows them to interact with the details of a course such
+    as their assignments, modules and module content, and their grades.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-37
+  title: The course detail screen should let students submit their response to an
+    assignment
+  body: Students should be able to use a textbox to respond to an assignment.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-38
+  title: The course detail screen should prominently display the letter grade a student
+    currently has in the course
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-39
+  title: The course detail screen should let a teacher manage the roster of the course
+  body: Teachers should be able to add or remove a student from the roster.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-40
+  title: The teacher main menu should let the user manage the list of students enrolled
+    at the university
+  body: Teachers should be able to add a student, edit students, or remove students
+    from the system. Removing a student from the system should automatically remove
+    their enrollment in all courses and delete their assignment submissions and grades.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-41
+  title: The course detail screen should let teachers manage assignments for the course
+  body: Teachers should be able to add, update, and delete assignments for a course.
+    When an assignment is deleted, the the submissions for that assignment should
+    also be deleted.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-42
+  title: The course detail screen should let teachers manage modules and module content
+  body: Teachers should be able to add modules and content to modules, remove modules
+    and content from modules, and update modules and module content.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-43
+  title: Teachers should be able to copy assignments from one course to another
+  body: Copying an assignment should not copy student submissions.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-44
+  title: Teachers should be able to export and import student rosters from / into
+    a course respectively.
+  body: If a student roster is already associated with a course, imports must be idempotent
+    and non-destructive by importing only new student associations in the import file.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-45
+  title: Teachers should be able to make announcements for their courses, which show
+    at the top of the course detail screen in the student view
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-46
+  title: Teachers should be able to import / export assignments from / into a course
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-47
+  title: Teachers should be able to specify the grade ranges for letter grades
+  body: This functionality should be managed within a settings screen for a course.
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-48
+  title: Teachers should be able to export their grade book as a csv file
+  body: The gradebook should have a column for each assignment and a row for each
+    student
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-49
+  title: The application should support quizzes as a form of assignment.
+  body: Quizzes should let the teacher specify a question and the student should respond
+    to the question in a free form textbox.
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-50
+  title: Students should be able to upload files as part of their submission to an
+    assignment
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-51
+  title: The application should manage student data server-side through a WebAPI Controller
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-52
+  title: The application should manage course data server-side through a WebAPI controller
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-53
+  title: The application should support searching for students in course rosters
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-54
+  title: The application should allow teachers to specify start and stop dates for
+    semesters from their main menu
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-55
+  title: Assignments should support conversations between the instructor and student
+    in a comments section
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:06
+  - type:feature
+  milestone: Sprint 6
+- id: ISSUE-56
+  title: The application should support persistence for student data
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:06
+  - type:feature
+  milestone: Sprint 6
+- id: ISSUE-57
+  title: The application should support persistence for course data
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:06
+  - type:feature
+  milestone: Sprint 6
+- id: ISSUE-58
+  title: The application should support emailing students when new assignments are
+    completed posted
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:07
+  - type:feature
+  milestone: Sprint 7
+- id: ISSUE-59
+  title: Teachers should be able to assign a hexcode color for letter grades and the
+    letter grade should be displayed on the course detail page.
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:07
+  - type:feature
+  milestone: Sprint 7
+- id: ISSUE-60
+  title: Quizzes should support multiple choice questions
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:07
+  - type:feature
+  milestone: Sprint 7

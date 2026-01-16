@@ -1,3 +1,55 @@
+version: 1
+labels:
+- name: course-backlog
+  color: 782F40
+  description: These are work items that contribute to the overall course grade
+- name: sprint:01
+  color: FFFFFF
+  description: Sprint 1 work
+- name: sprint:02
+  color: FFFFFF
+  description: ''
+- name: sprint:03
+  color: ffffff
+  description: ''
+- name: sprint:04
+  color: ffffff
+  description: ''
+- name: sprint:05
+  color: ffffff
+  description: ''
+- name: sprint:06
+  color: ffffff
+  description: ''
+- name: sprint:07
+  color: ffffff
+  description: ''
+- name: type:feature
+  color: CEB888
+  description: New functionality
+milestones:
+- title: Sprint 1
+  description: Basic syntax + CLI + navigating through CLI menus
+  state: open
+- title: Sprint 2
+  description: Advanced syntax + new CLI features
+  state: open
+- title: Sprint 3
+  description: ''
+  state: open
+- title: Sprint 4
+  description: ''
+  state: open
+- title: Sprint 5
+  description: ''
+  state: open
+- title: Sprint 6
+  description: ''
+  state: open
+- title: Sprint 7
+  description: ''
+  state: open
+issues:
 - id: ISSUE-10
   title: A teacher should be able to add a new course to their list of courses
   body: A teacher should be able to add a course from the main teacher menu. When

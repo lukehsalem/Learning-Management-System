@@ -197,7 +197,7 @@ def upsert_issue(
 
 def main() -> None:
     token = os.environ.get("GITHUB_TOKEN")
-    backlog_file = os.environ.get("BACKLOG_FILE", "backlog/issues.yml")
+    backlog_file = os.environ.get("BACKLOG_FILE", "backlog/issues__Sprint_1.yml")
     if not token:
         die("GITHUB_TOKEN not set (did you run in GitHub Actions with permissions?)")
 

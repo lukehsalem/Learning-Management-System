@@ -1,0 +1,43 @@
+- id: ISSUE-46
+  title: Teachers should be able to import / export assignments from / into a course
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-47
+  title: Teachers should be able to specify the grade ranges for letter grades
+  body: This functionality should be managed within a settings screen for a course.
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-48
+  title: Teachers should be able to export their grade book as a csv file
+  body: The gradebook should have a column for each assignment and a row for each
+    student
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-49
+  title: The application should support quizzes as a form of assignment.
+  body: Quizzes should let the teacher specify a question and the student should respond
+    to the question in a free form textbox.
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4
+- id: ISSUE-50
+  title: Students should be able to upload files as part of their submission to an
+    assignment
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:04
+  - type:feature
+  milestone: Sprint 4

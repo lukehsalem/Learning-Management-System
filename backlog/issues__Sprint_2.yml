@@ -1,0 +1,89 @@
+- id: ISSUE-24
+  title: Module content should support assignments, files, and pages
+  body: 'Use inheritance to allow course modules to support:
+
+
+    - Assignments - an assignment that is embedded directly in a module
+
+    - Files - a file that shows its name and allows the user to open the file itself
+    directly from the module
+
+    - Pages - pages represent an abstraction that support the previous string-based
+    content and only need to show the content of a string'
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-25
+  title: The application should support assignment groups
+  body: Teachers should be able to manage assignment groups such that they can add,
+    edit, list, and delete groups. Teachers should also be able to add assignments
+    to a group.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-26
+  title: Assignment groups should allow weighted grades
+  body: Teachers should be able to provide a weight to an assignment group such that
+    the final course grade is calculated using that weight.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-27
+  title: Teachers should be able to copy a course
+  body: Copying a course should create a deep copy of all content in the course except
+    for the roster of students and student submissions.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-28
+  title: The application should require courses to be assigned a semester
+  body: Add a semester property to the Course model.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-29
+  title: Teachers should see their courses by semester
+  body: When viewing courses, teachers should see them organized by semester. Teachers
+    should be able to filter and sort their courses by term.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-30
+  title: Courses should support multiple sections
+  body: Add a section property to the Course model.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-31
+  title: Students should be able to see their grades for a course
+  body: Students should be able to see their grades by individual assignment as well
+    as their (potentially weighted) average in the course.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2
+- id: ISSUE-32
+  title: Teachers should be able to grade student submissions
+  body: Teachers should be able to assess a grade to student submissions using either
+    percentages or total points out of the available number of points. Teachers should
+    also be able to leave a comment to provide feedback on the student's submission.
+  labels:
+  - course-backlog
+  - sprint:02
+  - type:feature
+  milestone: Sprint 2

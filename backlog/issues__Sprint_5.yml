@@ -1,0 +1,33 @@
+- id: ISSUE-51
+  title: The application should manage student data server-side through a WebAPI Controller
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-52
+  title: The application should manage course data server-side through a WebAPI controller
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-53
+  title: The application should support searching for students in course rosters
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5
+- id: ISSUE-54
+  title: The application should allow teachers to specify start and stop dates for
+    semesters from their main menu
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:05
+  - type:feature
+  milestone: Sprint 5

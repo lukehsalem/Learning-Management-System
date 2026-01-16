@@ -1,0 +1,25 @@
+- id: ISSUE-55
+  title: Assignments should support conversations between the instructor and student
+    in a comments section
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:06
+  - type:feature
+  milestone: Sprint 6
+- id: ISSUE-56
+  title: The application should support persistence for student data
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:06
+  - type:feature
+  milestone: Sprint 6
+- id: ISSUE-57
+  title: The application should support persistence for course data
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:06
+  - type:feature
+  milestone: Sprint 6

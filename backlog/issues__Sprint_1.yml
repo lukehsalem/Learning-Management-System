@@ -1,0 +1,253 @@
+- id: ISSUE-10
+  title: A teacher should be able to add a new course to their list of courses
+  body: A teacher should be able to add a course from the main teacher menu. When
+    creating a course, the user should only need to specify the name, code, and description
+    of the course.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-12
+  title: A user should be able to unenroll a student
+  body: 'A student should be able to unenroll themselves from the course homepage.
+
+
+    A teacher should be able to unenroll a selected student from the course homepage.'
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-13
+  title: A teacher should be able to add an assignment for a course
+  body: Teachers should be able to add assignments for a course from the course main
+    menu
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-14
+  title: A student should be able to submit a submission for an assignment
+  body: From their course menu, students should be able to add a submission for an
+    assignment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-15
+  title: A teacher should be able to grade a student's submission
+  body: Teachers should be able to review and grade a student's submission for an
+    assignment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-16
+  title: Teachers should be able to delete an assignment
+  body: Teachers should be able to delete an assignment, which should also delete
+    any student submissions for that assignment.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-17
+  title: Teachers should be able to edit an assignment
+  body: Teachers should be able to edit an assignment already added to a course.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-18
+  title: Teachers should be able to add modules to courses
+  body: Teachers should be able to add modules to a course from the course main menu
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-19
+  title: Teachers should be able to add content to a module
+  body: The application should allow a teacher to add a string to the list of strings
+    that represent module content
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-20
+  title: Teachers should be able to modify content in a module
+  body: The application should allow a teacher to update a string in the list of strings
+    that represent module content
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-21
+  title: Teachers should be able to remove content from a module
+  body: The application should allow a teacher to remove a string from the list of
+    strings that represent module content
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-22
+  title: Teachers should be able to delete a course from their list of courses
+  body: Teachers should be able to delete a course, which deletes all content of the
+    course except for the students that were enrolled in the course. Those students
+    should continue to exist in the system, be enrolled in their other courses, and
+    be available to enroll in other courses.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-23
+  title: Teachers should be able to update the description of a course
+  body: Teachers should be able to update the description of a course from the course's
+    main menu
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-3
+  title: Create a CLI menu that allows a user to choose if they are a student or teacher
+  body: This constitutes the first menu in the application, which allows a user to
+    differentiate themselves as a user who should see the application as a student
+    or a teacher.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-4
+  title: Create a CLI menu that shows the teacher sub-menu
+  body: Teachers should be able to choose between adding a new course or selecting
+    an existing course using this menu. Selection should be based on a stable Id and
+    not the index of the course in a list.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-6
+  title: Create a CLI menu that allows the user to select an existing student to proxy
+    as
+  body: Once selected, the user should be redirected to the student sub-menu as if
+    they had logged into the application as the selected user.
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-8
+  title: Create a CLI menu that serves as the main menu for a course
+  body: 'The menu should show the name and code of the course as well as let the student:
+
+
+    - See all modules and module content
+
+    - See all assignments
+
+    - See other students in the course
+
+    - See course schedule - a list of assignments + their due dates'
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1
+- id: ISSUE-9
+  title: Create models for the application
+  body: 'Create public C# classes with properties that cover the following concepts.
+    All Id values must be integers that are unique per object.
+
+
+    **User**
+
+    - Id
+
+    - Name
+
+    - Code (equivalent to FSUID)
+
+
+    **Student**
+
+    Student should be derived from User and add the following properties:
+
+    - Classification
+
+
+    **Instructor**
+
+    Instructor should be derived from User and add the following properties:
+
+    - YearsOfExperience
+
+
+    **Course**
+
+    - Id
+
+    - Code
+
+    - Name
+
+    - Description
+
+    - Roster (list of students)
+
+    - Modules (list of modules)
+
+    - Assignments (list of assignments)
+
+
+    **Module**
+
+    - Id
+
+    - Content (list of strings)
+
+
+    **Assignment**
+
+    - Id
+
+    - Name
+
+    - Description
+
+    - Available Points
+
+    - DueDate
+
+    - Submissions (list of submissions)
+
+
+    **Submission**
+
+    - Id
+
+    - StudentId
+
+    - AssignmentId
+
+    - Content (string)
+
+    - SubmissionDate
+
+    '
+  labels:
+  - course-backlog
+  - sprint:01
+  - type:feature
+  milestone: Sprint 1

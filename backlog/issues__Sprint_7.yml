@@ -1,0 +1,26 @@
+- id: ISSUE-58
+  title: The application should support emailing students when new assignments are
+    completed posted
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:07
+  - type:feature
+  milestone: Sprint 7
+- id: ISSUE-59
+  title: Teachers should be able to assign a hexcode color for letter grades and the
+    letter grade should be displayed on the course detail page.
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:07
+  - type:feature
+  milestone: Sprint 7
+- id: ISSUE-60
+  title: Quizzes should support multiple choice questions
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:07
+  - type:feature
+  milestone: Sprint 7

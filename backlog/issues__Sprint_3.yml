@@ -1,0 +1,123 @@
+- id: ISSUE-33
+  title: The application should have a main menu in MAUI.NET
+  body: The main menu should have two buttons, one to use the application as a teacher
+    and one to use the application as a student.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-34
+  title: The student menu should allow the user to select a student from a list of
+    available students
+  body: Upon selection, the user should see courses that the student is enrolled in
+    and be able to interact with those courses
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-35
+  title: The student and teacher menus should allow the user to return to the main
+    menu
+  body: The application should avoid user traps by allowing the user to return to
+    the main menu from either the student or teacher menus
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-36
+  title: The student view should display a list of courses and allow a student to
+    select a course to interact with
+  body: When a student chooses a course from the list, they should be taken to a detail
+    view of the course that allows them to interact with the details of a course such
+    as their assignments, modules and module content, and their grades.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-37
+  title: The course detail screen should let students submit their response to an
+    assignment
+  body: Students should be able to use a textbox to respond to an assignment.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-38
+  title: The course detail screen should prominently display the letter grade a student
+    currently has in the course
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-39
+  title: The course detail screen should let a teacher manage the roster of the course
+  body: Teachers should be able to add or remove a student from the roster.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-40
+  title: The teacher main menu should let the user manage the list of students enrolled
+    at the university
+  body: Teachers should be able to add a student, edit students, or remove students
+    from the system. Removing a student from the system should automatically remove
+    their enrollment in all courses and delete their assignment submissions and grades.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-41
+  title: The course detail screen should let teachers manage assignments for the course
+  body: Teachers should be able to add, update, and delete assignments for a course.
+    When an assignment is deleted, the the submissions for that assignment should
+    also be deleted.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-42
+  title: The course detail screen should let teachers manage modules and module content
+  body: Teachers should be able to add modules and content to modules, remove modules
+    and content from modules, and update modules and module content.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-43
+  title: Teachers should be able to copy assignments from one course to another
+  body: Copying an assignment should not copy student submissions.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-44
+  title: Teachers should be able to export and import student rosters from / into
+    a course respectively.
+  body: If a student roster is already associated with a course, imports must be idempotent
+    and non-destructive by importing only new student associations in the import file.
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3
+- id: ISSUE-45
+  title: Teachers should be able to make announcements for their courses, which show
+    at the top of the course detail screen in the student view
+  body: ''
+  labels:
+  - course-backlog
+  - sprint:03
+  - type:feature
+  milestone: Sprint 3

@@ -23,7 +23,7 @@ def request_json(method: str, url: str, token: str, **kwargs) -> Any:
     r = requests.request(method, url, headers=gh_headers(token), **kwargs)
     # Helpful rate-limit / abuse detection backoff
     if r.status_code in (429, 403) and "rate limit" in r.text.lower():
-        time.sleep(3)
+        time.sleep(3000)
         r = requests.request(method, url, headers=gh_headers(token), **kwargs)
 
     if r.status_code >= 400:

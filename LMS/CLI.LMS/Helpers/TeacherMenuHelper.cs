@@ -204,7 +204,18 @@ namespace CLI.LMS.Helpers
 
             Console.WriteLine("Assignment updated.\n");
         }
-        private void DeleteAssignment(Course course) { }
+        private void DeleteAssignment(Course course)
+        {
+            if (course.Assignments.Count == 0) { Console.WriteLine("No assignments.\n"); return; }
+            foreach (var a in course.Assignments)
+                Console.WriteLine($"  [{a.Id}] {a.Name}");
+            Console.Write("Enter Assignment Id: ");
+            if (!int.TryParse(Console.ReadLine(), out int id)) return;
+            var assignment = course.Assignments.FirstOrDefault(a => a.Id == id);
+            if (assignment == null) { Console.WriteLine("Assignment not found.\n"); return; }
+            course.Assignments.Remove(assignment);
+            Console.WriteLine("Assignment and its submissions deleted.\n");
+        }
         private void GradeSubmission(Course course) { }
         private void AddModule(Course course) { }
         private void ManageModuleContent(Course course) { }

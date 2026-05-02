@@ -246,7 +246,15 @@ namespace CLI.LMS.Helpers
                 Console.WriteLine("Submission graded.\n");
             }
         }
-        private void AddModule(Course course) { }
+        private void AddModule(Course course)
+        {
+            var module = new Module
+            {
+                Id = course.Modules.Count > 0 ? course.Modules.Max(m => m.Id) + 1 : 1
+            };
+            course.Modules.Add(module);
+            Console.WriteLine($"Module {module.Id} added.\n");
+        }
         private void ManageModuleContent(Course course) { }
         private void DeleteCourse(Course course)
         {

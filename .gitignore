@@ -10,7 +10,6 @@
 *.userosscache
 *.sln.docstates
 *.env
-CLAUDE.md
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -227,9 +226,6 @@ PublishScripts/
 csx/
 *.build.csdef
 
-# Microsoft Azure Emulator
-ecf/
-rcf/
 
 # Windows Store app package directories and files
 AppPackages/
@@ -239,12 +235,10 @@ _pkginfo.txt
 *.appx
 *.appxbundle
 *.appxupload
+# Microsoft Azure Emulator
+ecf/
+rcf/
 
-# Visual Studio cache files
-# files ending in .cache can be ignored
-*.[Cc]ache
-# but keep track of directories ending in .cache
-!?*.[Cc]ache/
 
 # Others
 ClientBin/
@@ -256,6 +250,12 @@ ClientBin/
 *.pfx
 *.publishsettings
 orleans.codegen.cs
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!?*.[Cc]ache/
 
 # Including strong name files can present a security risk
 # (https://github.com/github/gitignore/pull/2483#issue-259490424)
@@ -373,6 +373,14 @@ MSBuild_Logs/
 # AWS SAM Build and Temporary Artifacts folder
 .aws-sam
 
+# Visual Studio History (VSHistory) files
+.vshistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
 
@@ -382,14 +390,6 @@ MSBuild_Logs/
 # Local History for Visual Studio
 **/.localhistory/
 
-# Visual Studio History (VSHistory) files
-.vshistory/
-
-# BeatPulse healthcheck temp database
-healthchecksdb
-
-# Backup folder for Package Reference Convert tool in Visual Studio 2017
-MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 **/.ionide/

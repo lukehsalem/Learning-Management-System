@@ -299,6 +299,72 @@ public partial class TeacherCourseDetailPage : ContentPage
         await DisplayAlert("Graded", $"Grade saved: {pts}/{assignment.AvailablePoints}", "OK");
     }
 
+    // --- Export / Import Assignments (ISSUE-46) ---
+
+    private async void OnExportAssignmentsClicked(object sender, EventArgs e)
+    {
+        if (_course.Assignments.Count == 0)
+        {
+            await DisplayAlert("Export Assignments", "No assignments to export.", "OK");
+            return;
+        }
+
+        var lines = new List<string> { "Name,Description,AvailablePoints,DueDate" };
+        lines.AddRange(_course.Assignments.Select(a =>
+            $"{Escape(a.Name)},{Escape(a.Description)},{a.AvailablePoints},{a.DueDate:MM/dd/yyyy}"));
+
+        var path = Path.Combine(FileSystem.AppDataDirectory,
+            $"assignments_{_course.Code}_{_course.Semester?.Replace(" ", "_") ?? "nosem"}.csv");
+        File.WriteAllText(path, string.Join("\n", lines));
+        await DisplayAlert("Export Assignments", $"Assignments exported to:\n{path}", "OK");
+    }
+
+    private async void OnImportAssignmentsClicked(object sender, EventArgs e)
+    {
+        var result = await FilePicker.Default.PickAsync(new PickOptions
+        {
+            PickerTitle = "Select Assignments CSV",
+            FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+            {
+                { DevicePlatform.MacCatalyst, new[] { "public.comma-separated-values-text", "public.plain-text" } },
+                { DevicePlatform.iOS, new[] { "public.comma-separated-values-text" } },
+                { DevicePlatform.Android, new[] { "text/csv", "text/plain" } },
+                { DevicePlatform.WinUI, new[] { ".csv", ".txt" } }
+            })
+        });
+
+        if (result == null) return;
+
+        var lines = File.ReadAllLines(result.FullPath);
+        int added = 0;
+
+        foreach (var line in lines.Skip(1))
+        {
+            var parts = line.Split(',');
+            if (parts.Length < 4) continue;
+            var name = parts[0].Trim().Trim('"');
+            if (string.IsNullOrWhiteSpace(name)) continue;
+            if (_course.Assignments.Any(a => a.Name == name)) continue;
+
+            var description = parts[1].Trim().Trim('"');
+            int.TryParse(parts[2].Trim(), out int points);
+            DateTime.TryParse(parts[3].Trim(), out DateTime dueDate);
+
+            _course.Assignments.Add(new Assignment
+            {
+                Id = _course.Assignments.Count > 0 ? _course.Assignments.Max(a => a.Id) + 1 : 1,
+                Name = name,
+                Description = description,
+                AvailablePoints = points,
+                DueDate = dueDate
+            });
+            added++;
+        }
+
+        RefreshAssignments();
+        await DisplayAlert("Import Assignments", $"Imported {added} new assignment(s).", "OK");
+    }
+
     // --- Copy Assignments (ISSUE-43) ---
 
     private async void OnCopyAssignmentsClicked(object sender, EventArgs e)

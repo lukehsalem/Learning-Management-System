@@ -103,7 +103,44 @@ namespace CLI.LMS.Helpers
             course.Description = Console.ReadLine();
             Console.WriteLine("Description updated.\n");
         }
-        private void EnrollStudent(Course course) { }
+        private void EnrollStudent(Course course)
+        {
+            Console.WriteLine("1. Select Existing Student");
+            Console.WriteLine("2. Create New Student");
+            var choice = Console.ReadLine();
+            if (choice == "1")
+            {
+                var students = StudentService.Current.GetAll();
+                if (students.Count == 0) { Console.WriteLine("No students in system.\n"); return; }
+                foreach (var s in students)
+                    Console.WriteLine($"  [{s.Id}] {s.Name} ({s.Code})");
+                Console.Write("Enter Student Id: ");
+                if (int.TryParse(Console.ReadLine(), out int id))
+                {
+                    var student = StudentService.Current.GetById(id);
+                    if (student == null) { Console.WriteLine("Student not found.\n"); return; }
+                    if (course.Roster.Any(s => s.Id == student.Id))
+                    {
+                        Console.WriteLine("Student already enrolled.\n");
+                        return;
+                    }
+                    course.Roster.Add(student);
+                    Console.WriteLine($"{student.Name} enrolled.\n");
+                }
+            }
+            else if (choice == "2")
+            {
+                Console.Write("Name: ");
+                var name = Console.ReadLine();
+                Console.Write("Code (FSUID): ");
+                var code = Console.ReadLine();
+                Console.Write("Classification: ");
+                var classification = Console.ReadLine();
+                var student = StudentService.Current.Add(name, code, classification);
+                course.Roster.Add(student);
+                Console.WriteLine($"{student.Name} created and enrolled.\n");
+            }
+        }
         private void UnenrollStudent(Course course) { }
         private void AddAssignment(Course course) { }
         private void EditAssignment(Course course) { }

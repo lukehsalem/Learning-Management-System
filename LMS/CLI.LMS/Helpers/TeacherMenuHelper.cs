@@ -141,7 +141,20 @@ namespace CLI.LMS.Helpers
                 Console.WriteLine($"{student.Name} created and enrolled.\n");
             }
         }
-        private void UnenrollStudent(Course course) { }
+        private void UnenrollStudent(Course course)
+        {
+            if (course.Roster.Count == 0) { Console.WriteLine("No students enrolled.\n"); return; }
+            foreach (var s in course.Roster)
+                Console.WriteLine($"  [{s.Id}] {s.Name} ({s.Code})");
+            Console.Write("Enter Student Id to unenroll: ");
+            if (int.TryParse(Console.ReadLine(), out int id))
+            {
+                var student = course.Roster.FirstOrDefault(s => s.Id == id);
+                if (student == null) { Console.WriteLine("Student not found in roster.\n"); return; }
+                course.Roster.Remove(student);
+                Console.WriteLine($"{student.Name} unenrolled.\n");
+            }
+        }
         private void AddAssignment(Course course) { }
         private void EditAssignment(Course course) { }
         private void DeleteAssignment(Course course) { }

@@ -65,9 +65,47 @@ namespace CLI.LMS.Helpers
                 Console.WriteLine($"\n--=========================--");
                 Console.WriteLine($"Course: {course.Name} ({course.Code})");
                 Console.WriteLine("--=========================--");
-                Console.WriteLine("1. Back");
+                Console.WriteLine("1.  Update Description");
+                Console.WriteLine("2.  Enroll Student");
+                Console.WriteLine("3.  Unenroll Student");
+                Console.WriteLine("4.  Add Assignment");
+                Console.WriteLine("5.  Edit Assignment");
+                Console.WriteLine("6.  Delete Assignment");
+                Console.WriteLine("7.  Grade Submission");
+                Console.WriteLine("8.  Add Module");
+                Console.WriteLine("9.  Manage Module Content");
+                Console.WriteLine("10. Delete Course");
+                Console.WriteLine("11. Back");
                 choice = Console.ReadLine();
-            } while (choice != "1");
+
+                switch (choice)
+                {
+                    case "1":  UpdateDescription(course); break;
+                    case "2":  EnrollStudent(course); break;
+                    case "3":  UnenrollStudent(course); break;
+                    case "4":  AddAssignment(course); break;
+                    case "5":  EditAssignment(course); break;
+                    case "6":  DeleteAssignment(course); break;
+                    case "7":  GradeSubmission(course); break;
+                    case "8":  AddModule(course); break;
+                    case "9":  ManageModuleContent(course); break;
+                    case "10":
+                        DeleteCourse(course);
+                        choice = "11";
+                        break;
+                }
+            } while (choice != "11");
         }
+
+        private void UpdateDescription(Course course) { }
+        private void EnrollStudent(Course course) { }
+        private void UnenrollStudent(Course course) { }
+        private void AddAssignment(Course course) { }
+        private void EditAssignment(Course course) { }
+        private void DeleteAssignment(Course course) { }
+        private void GradeSubmission(Course course) { }
+        private void AddModule(Course course) { }
+        private void ManageModuleContent(Course course) { }
+        private void DeleteCourse(Course course) { }
     }
 }

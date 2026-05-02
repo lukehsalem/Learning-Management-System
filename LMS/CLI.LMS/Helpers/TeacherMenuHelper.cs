@@ -216,7 +216,36 @@ namespace CLI.LMS.Helpers
             course.Assignments.Remove(assignment);
             Console.WriteLine("Assignment and its submissions deleted.\n");
         }
-        private void GradeSubmission(Course course) { }
+        private void GradeSubmission(Course course)
+        {
+            if (course.Assignments.Count == 0) { Console.WriteLine("No assignments.\n"); return; }
+            foreach (var a in course.Assignments)
+                Console.WriteLine($"  [{a.Id}] {a.Name} ({a.Submissions.Count} submission(s))");
+            Console.Write("Enter Assignment Id: ");
+            if (!int.TryParse(Console.ReadLine(), out int assignmentId)) return;
+            var assignment = course.Assignments.FirstOrDefault(a => a.Id == assignmentId);
+            if (assignment == null) { Console.WriteLine("Assignment not found.\n"); return; }
+            if (assignment.Submissions.Count == 0) { Console.WriteLine("No submissions.\n"); return; }
+
+            foreach (var sub in assignment.Submissions)
+            {
+                var student = StudentService.Current.GetById(sub.StudentId);
+                var graded = sub.PointsAwarded.HasValue ? $" [Graded: {sub.PointsAwarded}/{assignment.AvailablePoints}]" : "";
+                Console.WriteLine($"  [{sub.Id}] {student?.Name ?? $"Student {sub.StudentId}"}{graded}");
+            }
+            Console.Write("Enter Submission Id: ");
+            if (!int.TryParse(Console.ReadLine(), out int subId)) return;
+            var submission = assignment.Submissions.FirstOrDefault(s => s.Id == subId);
+            if (submission == null) { Console.WriteLine("Submission not found.\n"); return; }
+
+            Console.WriteLine($"Content: {submission.Content}");
+            Console.Write($"Points Awarded (out of {assignment.AvailablePoints}): ");
+            if (int.TryParse(Console.ReadLine(), out int pts))
+            {
+                submission.PointsAwarded = pts;
+                Console.WriteLine("Submission graded.\n");
+            }
+        }
         private void AddModule(Course course) { }
         private void ManageModuleContent(Course course) { }
         private void DeleteCourse(Course course)

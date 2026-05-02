@@ -79,8 +79,9 @@ namespace CLI.LMS.Helpers
                 Console.WriteLine("3. Submit Assignment");
                 Console.WriteLine("4. View Other Students");
                 Console.WriteLine("5. View Schedule");
-                Console.WriteLine("6. Unenroll");
-                Console.WriteLine("7. Back");
+                Console.WriteLine("6. View My Grades");
+                Console.WriteLine("7. Unenroll");
+                Console.WriteLine("8. Back");
                 choice = Console.ReadLine();
 
                 switch (choice)
@@ -90,12 +91,13 @@ namespace CLI.LMS.Helpers
                     case "3": SubmitAssignment(course); break;
                     case "4": ViewOtherStudents(course); break;
                     case "5": ViewSchedule(course); break;
-                    case "6":
+                    case "6": ViewMyGrades(course); break;
+                    case "7":
                         UnenrollSelf(course);
-                        choice = "7";
+                        choice = "8";
                         break;
                 }
-            } while (choice != "7");
+            } while (choice != "8");
         }
 
         private void ViewModules(Course course)
@@ -104,8 +106,18 @@ namespace CLI.LMS.Helpers
             foreach (var m in course.Modules)
             {
                 Console.WriteLine($"\nModule {m.Id}:");
-                for (int i = 0; i < m.Content.Count; i++)
-                    Console.WriteLine($"  {i + 1}. {m.Content[i]}");
+                foreach (var item in m.Content)
+                {
+                    if (item is AssignmentContent ac)
+                    {
+                        var a = course.Assignments.FirstOrDefault(x => x.Id == ac.AssignmentId);
+                        Console.WriteLine($"  Assignment: {a?.Name ?? $"(Id {ac.AssignmentId})"} (Due: {a?.DueDate:MM/dd/yyyy})");
+                    }
+                    else if (item is FileContent fc)
+                        Console.WriteLine($"  File: {fc.FileName}");
+                    else if (item is PageContent pc)
+                        Console.WriteLine($"  Page: {pc.Text}");
+                }
             }
             Console.WriteLine();
         }
@@ -167,6 +179,74 @@ namespace CLI.LMS.Helpers
             foreach (var a in course.Assignments.OrderBy(a => a.DueDate))
                 Console.WriteLine($"  {a.DueDate:MM/dd/yyyy} - {a.Name}");
             Console.WriteLine();
+        }
+
+        private void ViewMyGrades(Course course)
+        {
+            Console.WriteLine($"\nGrades for {course.Name}:");
+            if (course.Assignments.Count == 0) { Console.WriteLine("No assignments.\n"); return; }
+
+            foreach (var a in course.Assignments)
+            {
+                var sub = a.Submissions.FirstOrDefault(s => s.StudentId == _currentStudent.Id);
+                string grade;
+                if (sub == null)
+                    grade = "Not submitted";
+                else if (!sub.PointsAwarded.HasValue)
+                    grade = "Submitted, not graded";
+                else
+                    grade = $"{sub.PointsAwarded}/{a.AvailablePoints} ({(double)sub.PointsAwarded.Value / a.AvailablePoints * 100:F1}%)";
+                Console.WriteLine($"  {a.Name}: {grade}");
+                if (!string.IsNullOrWhiteSpace(sub?.Comment))
+                    Console.WriteLine($"    Comment: {sub.Comment}");
+            }
+
+            double avg = CalculateCourseGrade(course);
+            Console.WriteLine(avg >= 0 ? $"\nCourse Average: {avg:F1}%" : "\nCourse Average: N/A");
+            Console.WriteLine();
+        }
+
+        private double CalculateCourseGrade(Course course)
+        {
+            if (course.AssignmentGroups.Count > 0)
+            {
+                double totalWeight = 0;
+                double weightedSum = 0;
+
+                foreach (var group in course.AssignmentGroups.Where(g => g.Weight > 0))
+                {
+                    var gradedInGroup = group.Assignments
+                        .Select(a => new { a, sub = a.Submissions.FirstOrDefault(s => s.StudentId == _currentStudent.Id) })
+                        .Where(x => x.sub?.PointsAwarded.HasValue == true)
+                        .ToList();
+
+                    if (gradedInGroup.Count == 0) continue;
+
+                    double groupAvailable = gradedInGroup.Sum(x => x.a.AvailablePoints);
+                    double groupEarned = gradedInGroup.Sum(x => (double)x.sub.PointsAwarded.Value);
+
+                    if (groupAvailable > 0)
+                    {
+                        weightedSum += (groupEarned / groupAvailable) * group.Weight;
+                        totalWeight += group.Weight;
+                    }
+                }
+
+                return totalWeight > 0 ? weightedSum / totalWeight * 100 : -1;
+            }
+            else
+            {
+                var graded = course.Assignments
+                    .Select(a => new { a, sub = a.Submissions.FirstOrDefault(s => s.StudentId == _currentStudent.Id) })
+                    .Where(x => x.sub?.PointsAwarded.HasValue == true)
+                    .ToList();
+
+                if (graded.Count == 0) return -1;
+
+                double totalAvailable = graded.Sum(x => x.a.AvailablePoints);
+                double totalEarned = graded.Sum(x => (double)x.sub.PointsAwarded.Value);
+                return totalAvailable > 0 ? totalEarned / totalAvailable * 100 : -1;
+            }
         }
 
         private void UnenrollSelf(Course course)

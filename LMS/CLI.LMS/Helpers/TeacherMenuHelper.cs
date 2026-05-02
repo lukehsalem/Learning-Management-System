@@ -155,7 +155,27 @@ namespace CLI.LMS.Helpers
                 Console.WriteLine($"{student.Name} unenrolled.\n");
             }
         }
-        private void AddAssignment(Course course) { }
+        private void AddAssignment(Course course)
+        {
+            Console.Write("Assignment Name: ");
+            var name = Console.ReadLine();
+            Console.Write("Description: ");
+            var description = Console.ReadLine();
+            Console.Write("Available Points: ");
+            int.TryParse(Console.ReadLine(), out int points);
+            Console.Write("Due Date (MM/DD/YYYY): ");
+            DateTime.TryParse(Console.ReadLine(), out DateTime dueDate);
+            var assignment = new Assignment
+            {
+                Id = course.Assignments.Count > 0 ? course.Assignments.Max(a => a.Id) + 1 : 1,
+                Name = name,
+                Description = description,
+                AvailablePoints = points,
+                DueDate = dueDate
+            };
+            course.Assignments.Add(assignment);
+            Console.WriteLine("Assignment added.\n");
+        }
         private void EditAssignment(Course course) { }
         private void DeleteAssignment(Course course) { }
         private void GradeSubmission(Course course) { }

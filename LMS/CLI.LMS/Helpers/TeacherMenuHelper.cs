@@ -176,7 +176,34 @@ namespace CLI.LMS.Helpers
             course.Assignments.Add(assignment);
             Console.WriteLine("Assignment added.\n");
         }
-        private void EditAssignment(Course course) { }
+        private void EditAssignment(Course course)
+        {
+            if (course.Assignments.Count == 0) { Console.WriteLine("No assignments.\n"); return; }
+            foreach (var a in course.Assignments)
+                Console.WriteLine($"  [{a.Id}] {a.Name} (Due: {a.DueDate:MM/dd/yyyy})");
+            Console.Write("Enter Assignment Id: ");
+            if (!int.TryParse(Console.ReadLine(), out int id)) return;
+            var assignment = course.Assignments.FirstOrDefault(a => a.Id == id);
+            if (assignment == null) { Console.WriteLine("Assignment not found.\n"); return; }
+
+            Console.Write($"Name [{assignment.Name}]: ");
+            var name = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(name)) assignment.Name = name;
+
+            Console.Write($"Description [{assignment.Description}]: ");
+            var desc = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(desc)) assignment.Description = desc;
+
+            Console.Write($"Available Points [{assignment.AvailablePoints}]: ");
+            var pts = Console.ReadLine();
+            if (int.TryParse(pts, out int points)) assignment.AvailablePoints = points;
+
+            Console.Write($"Due Date [{assignment.DueDate:MM/dd/yyyy}]: ");
+            var dt = Console.ReadLine();
+            if (DateTime.TryParse(dt, out DateTime dueDate)) assignment.DueDate = dueDate;
+
+            Console.WriteLine("Assignment updated.\n");
+        }
         private void DeleteAssignment(Course course) { }
         private void GradeSubmission(Course course) { }
         private void AddModule(Course course) { }

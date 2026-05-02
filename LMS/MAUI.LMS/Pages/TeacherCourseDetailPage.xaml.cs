@@ -215,13 +215,25 @@ public partial class TeacherCourseDetailPage : ContentPage
         var dateStr = await DisplayPromptAsync("Add Assignment", "Due Date (MM/DD/YYYY):");
         if (!DateTime.TryParse(dateStr, out DateTime dueDate)) return;
 
+        var quizChoice = await DisplayActionSheet("Assignment Type", "Cancel", null, "Regular Assignment", "Quiz");
+        if (quizChoice == null || quizChoice == "Cancel") return;
+        bool isQuiz = quizChoice == "Quiz";
+        string quizQuestion = null;
+        if (isQuiz)
+        {
+            quizQuestion = await DisplayPromptAsync("Quiz Question", "Enter the question students will answer:");
+            if (string.IsNullOrWhiteSpace(quizQuestion)) return;
+        }
+
         _course.Assignments.Add(new Assignment
         {
             Id = _course.Assignments.Count > 0 ? _course.Assignments.Max(a => a.Id) + 1 : 1,
             Name = name.Trim(),
             Description = description.Trim(),
             AvailablePoints = points,
-            DueDate = dueDate
+            DueDate = dueDate,
+            IsQuiz = isQuiz,
+            QuizQuestion = quizQuestion?.Trim()
         });
         RefreshAssignments();
     }
@@ -243,6 +255,13 @@ public partial class TeacherCourseDetailPage : ContentPage
         if (!string.IsNullOrWhiteSpace(description)) assignment.Description = description.Trim();
         if (int.TryParse(ptsStr, out int pts)) assignment.AvailablePoints = pts;
         if (DateTime.TryParse(dateStr, out DateTime due)) assignment.DueDate = due;
+
+        if (assignment.IsQuiz)
+        {
+            var question = await DisplayPromptAsync("Quiz Question", "Edit the question:", initialValue: assignment.QuizQuestion);
+            if (!string.IsNullOrWhiteSpace(question)) assignment.QuizQuestion = question.Trim();
+        }
+
         RefreshAssignments();
     }
 

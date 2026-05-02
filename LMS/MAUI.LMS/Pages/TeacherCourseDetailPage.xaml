@@ -110,7 +110,13 @@
                             <Frame Margin="0,3" Padding="12" HasShadow="False" BorderColor="LightGray">
                                 <Grid ColumnDefinitions="*,Auto,Auto,Auto">
                                     <VerticalStackLayout Grid.Column="0" Spacing="2">
-                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="15" />
+                                        <HorizontalStackLayout Spacing="6">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="15" />
+                                            <Frame Padding="4,1" CornerRadius="4" BackgroundColor="#7b1fa2"
+                                                   IsVisible="{Binding IsQuiz}" HasShadow="False">
+                                                <Label Text="Quiz" TextColor="White" FontSize="11" />
+                                            </Frame>
+                                        </HorizontalStackLayout>
                                         <Label Text="{Binding DueDate, StringFormat='Due: {0:MM/dd/yyyy}'}" FontSize="13" TextColor="Gray" />
                                         <Label Text="{Binding AvailablePoints, StringFormat='{0} pts'}" FontSize="13" TextColor="Gray" />
                                     </VerticalStackLayout>

@@ -97,7 +97,7 @@ public partial class StudentCourseDetailPage : ContentPage
             else if (!sub.PointsAwarded.HasValue) gradeDisplay = "Submitted — awaiting grade";
             else gradeDisplay = $"{sub.PointsAwarded}/{a.AvailablePoints} pts";
 
-            return new { a.Id, a.Name, a.DueDate, GradeDisplay = gradeDisplay };
+            return new { a.Id, a.Name, a.DueDate, GradeDisplay = gradeDisplay, a.IsQuiz };
         }).ToList();
 
         AssignmentsCollection.ItemsSource = null;
@@ -112,9 +112,11 @@ public partial class StudentCourseDetailPage : ContentPage
         if (assignment == null) return;
 
         var existing = assignment.Submissions.FirstOrDefault(s => s.StudentId == _student.Id);
-        string prompt = existing != null
-            ? $"You already submitted this assignment. Enter new response to resubmit:\n\nPrevious: {existing.Content}"
-            : "Enter your response:";
+        string prompt = assignment.IsQuiz && !string.IsNullOrWhiteSpace(assignment.QuizQuestion)
+            ? $"Question: {assignment.QuizQuestion}"
+            : existing != null
+                ? $"You already submitted. Enter new response to resubmit:\n\nPrevious: {existing.Content}"
+                : "Enter your response:";
 
         var content = await DisplayPromptAsync(assignment.Name, prompt, "Submit", "Cancel", "Your response here...");
         if (content == null) return;

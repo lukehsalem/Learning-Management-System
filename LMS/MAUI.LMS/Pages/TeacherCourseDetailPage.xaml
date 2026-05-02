@@ -9,10 +9,17 @@
 
             <!-- Course Header -->
             <Frame BackgroundColor="#1a237e" Padding="16" CornerRadius="10">
-                <VerticalStackLayout Spacing="4">
-                    <Label x:Name="CourseNameLabel" TextColor="White" FontSize="20" FontAttributes="Bold" />
-                    <Label x:Name="CourseInfoLabel" TextColor="#b0bec5" FontSize="14" />
-                </VerticalStackLayout>
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                        <Label x:Name="CourseNameLabel" TextColor="White" FontSize="20" FontAttributes="Bold" />
+                        <Label x:Name="CourseInfoLabel" TextColor="#b0bec5" FontSize="14" />
+                    </VerticalStackLayout>
+                    <Button Grid.Column="1"
+                            Text="Settings"
+                            VerticalOptions="Center"
+                            BackgroundColor="#3949ab"
+                            Clicked="OnSettingsClicked" />
+                </Grid>
             </Frame>
 
             <!-- Announcements (ISSUE-45) -->

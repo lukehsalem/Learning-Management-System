@@ -65,6 +65,13 @@ public partial class TeacherCourseDetailPage : ContentPage
         NoModulesLabel.IsVisible = items.Count == 0;
     }
 
+    // --- Settings (ISSUE-47) ---
+
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync($"{nameof(CourseSettingsPage)}?courseId={CourseId}");
+    }
+
     // --- Announcements ---
 
     private async void OnAddAnnouncementClicked(object sender, EventArgs e)

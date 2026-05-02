@@ -49,7 +49,7 @@ public partial class StudentCourseDetailPage : ContentPage
         }
         else
         {
-            LetterGradeLabel.Text = GetLetterGrade(pct);
+            LetterGradeLabel.Text = GetLetterGrade(pct, _course.GradeRanges);
             PercentageLabel.Text = $"{pct:F1}%";
         }
     }
@@ -169,12 +169,12 @@ public partial class StudentCourseDetailPage : ContentPage
         return totalAvail > 0 ? totalEarned / totalAvail * 100 : -1;
     }
 
-    private static string GetLetterGrade(double pct)
+    private static string GetLetterGrade(double pct, Models.GradeRange ranges)
     {
-        if (pct >= 90) return "A";
-        if (pct >= 80) return "B";
-        if (pct >= 70) return "C";
-        if (pct >= 60) return "D";
+        if (pct >= ranges.AMin) return "A";
+        if (pct >= ranges.BMin) return "B";
+        if (pct >= ranges.CMin) return "C";
+        if (pct >= ranges.DMin) return "D";
         return "F";
     }
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LMS.Pages.CourseSettingsPage"
+             Title="Course Settings">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <Label x:Name="CourseNameLabel" FontSize="18" FontAttributes="Bold" />
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <Label Text="Grade Ranges" FontSize="18" FontAttributes="Bold" />
+            <Label Text="Set the minimum percentage required for each letter grade."
+                   FontSize="14" TextColor="Gray" />
+
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  ColumnDefinitions="Auto,*,Auto"
+                  RowSpacing="12" ColumnSpacing="12">
+
+                <Label Grid.Row="0" Grid.Column="0" Text="A" FontSize="18" FontAttributes="Bold"
+                       TextColor="#1b5e20" VerticalOptions="Center" WidthRequest="24" />
+                <Entry Grid.Row="0" Grid.Column="1" x:Name="AMinEntry" Keyboard="Numeric"
+                       Placeholder="Min %" />
+                <Label Grid.Row="0" Grid.Column="2" Text="% and above" VerticalOptions="Center" FontSize="14" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="B" FontSize="18" FontAttributes="Bold"
+                       TextColor="#1565c0" VerticalOptions="Center" WidthRequest="24" />
+                <Entry Grid.Row="1" Grid.Column="1" x:Name="BMinEntry" Keyboard="Numeric"
+                       Placeholder="Min %" />
+                <Label Grid.Row="1" Grid.Column="2" Text="% and above" VerticalOptions="Center" FontSize="14" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="C" FontSize="18" FontAttributes="Bold"
+                       TextColor="#e65100" VerticalOptions="Center" WidthRequest="24" />
+                <Entry Grid.Row="2" Grid.Column="1" x:Name="CMinEntry" Keyboard="Numeric"
+                       Placeholder="Min %" />
+                <Label Grid.Row="2" Grid.Column="2" Text="% and above" VerticalOptions="Center" FontSize="14" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="D" FontSize="18" FontAttributes="Bold"
+                       TextColor="#b71c1c" VerticalOptions="Center" WidthRequest="24" />
+                <Entry Grid.Row="3" Grid.Column="1" x:Name="DMinEntry" Keyboard="Numeric"
+                       Placeholder="Min %" />
+                <Label Grid.Row="3" Grid.Column="2" Text="% and above" VerticalOptions="Center" FontSize="14" />
+
+                <Label Grid.Row="4" Grid.Column="0" Text="F" FontSize="18" FontAttributes="Bold"
+                       TextColor="#4a148c" VerticalOptions="Center" WidthRequest="24" />
+                <Label Grid.Row="4" Grid.Column="1" x:Name="FLabel"
+                       VerticalOptions="Center" FontSize="14" TextColor="Gray" />
+
+            </Grid>
+
+            <Button Text="Save Settings" Clicked="OnSaveClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -16,12 +16,12 @@ namespace CLI.LMS
                 Console.WriteLine("3. Quit Application");
                 userChoice = Console.ReadLine();
 
-                if (userChoice.Equals("1"))
+                if (userChoice == "1")
                 {
                     new StudentMenuHelper().EnterMainMenu();
-                } else if(userChoice.Equals("2"))
+                } else if (userChoice == "2")
                 {
-                    new TeacherMenuHelper().EnterMainMenu();    
+                    new TeacherMenuHelper().EnterMainMenu();
                 }
 
             } while (userChoice != "3");

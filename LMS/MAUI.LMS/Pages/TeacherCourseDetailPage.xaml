@@ -66,6 +66,9 @@
                     <Button Text="Export Roster (CSV)" Clicked="OnExportRosterClicked" />
                     <Button Text="Export Gradebook (CSV)" Clicked="OnExportGradebookClicked" />
                 </HorizontalStackLayout>
+                <SearchBar x:Name="RosterSearchBar"
+                           Placeholder="Search roster by name or ID..."
+                           TextChanged="OnRosterSearchChanged" />
                 <CollectionView x:Name="RosterCollection" SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>

@@ -45,10 +45,19 @@ public partial class TeacherCourseDetailPage : ContentPage
 
     private void RefreshRoster()
     {
+        var query = RosterSearchBar?.Text?.Trim().ToLower() ?? "";
+        var roster = string.IsNullOrEmpty(query)
+            ? _course.Roster
+            : _course.Roster.Where(s =>
+                s.Name.ToLower().Contains(query) ||
+                s.Code.ToLower().Contains(query)).ToList();
+
         RosterCollection.ItemsSource = null;
-        RosterCollection.ItemsSource = _course.Roster.ToList();
-        NoRosterLabel.IsVisible = _course.Roster.Count == 0;
+        RosterCollection.ItemsSource = roster;
+        NoRosterLabel.IsVisible = roster.Count == 0;
     }
+
+    private void OnRosterSearchChanged(object sender, TextChangedEventArgs e) => RefreshRoster();
 
     private void RefreshAssignments()
     {

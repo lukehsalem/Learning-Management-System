@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Api.LMS/Api.LMS.csproj" />
   <Project Path="CLI.LMS/CLI.LMS.csproj" />
   <Project Path="MAUI.LMS/MAUI.LMS.csproj" />
 </Solution>

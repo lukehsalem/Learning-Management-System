@@ -33,5 +33,7 @@ namespace CLI.LMS.Services
             _students.Add(student);
             return student;
         }
+
+        public void Delete(Student student) => _students.Remove(student);
     }
 }

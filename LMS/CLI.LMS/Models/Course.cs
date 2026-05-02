@@ -12,5 +12,7 @@ namespace CLI.LMS.Models
         public List<Module> Modules { get; set; } = new List<Module>();
         public List<Assignment> Assignments { get; set; } = new List<Assignment>();
         public List<AssignmentGroup> AssignmentGroups { get; set; } = new List<AssignmentGroup>();
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

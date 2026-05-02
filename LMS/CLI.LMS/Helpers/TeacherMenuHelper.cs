@@ -111,6 +111,10 @@ namespace CLI.LMS.Helpers
         private void GradeSubmission(Course course) { }
         private void AddModule(Course course) { }
         private void ManageModuleContent(Course course) { }
-        private void DeleteCourse(Course course) { }
+        private void DeleteCourse(Course course)
+        {
+            CourseService.Current.Delete(course);
+            Console.WriteLine("Course deleted.\n");
+        }
     }
 }

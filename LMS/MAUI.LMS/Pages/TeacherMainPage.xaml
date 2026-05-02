@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LMS.Pages.TeacherMainPage"
+             Title="Teacher Menu">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Students Section (ISSUE-40) -->
+            <VerticalStackLayout Spacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="Students" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
+                    <Button Grid.Column="1" Text="Add Student" Clicked="OnAddStudentClicked" />
+                </Grid>
+
+                <CollectionView x:Name="StudentsCollection" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="0,3" Padding="12" HasShadow="False" BorderColor="LightGray">
+                                <Grid ColumnDefinitions="*,Auto,Auto">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="15" />
+                                        <Label Text="{Binding Code}" FontSize="13" TextColor="Gray" />
+                                        <Label Text="{Binding Classification}" FontSize="13" TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                    <Button Grid.Column="1"
+                                            Text="Edit"
+                                            WidthRequest="70"
+                                            Margin="4,0"
+                                            VerticalOptions="Center"
+                                            CommandParameter="{Binding Id}"
+                                            Clicked="OnEditStudentClicked" />
+                                    <Button Grid.Column="2"
+                                            Text="Delete"
+                                            WidthRequest="70"
+                                            BackgroundColor="#c62828"
+                                            VerticalOptions="Center"
+                                            CommandParameter="{Binding Id}"
+                                            Clicked="OnDeleteStudentClicked" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label x:Name="NoStudentsLabel"
+                       Text="No students in the system."
+                       TextColor="Gray"
+                       HorizontalOptions="Center"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <!-- Courses Section -->
+            <VerticalStackLayout Spacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="Courses" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
+                    <Button Grid.Column="1" Text="Add Course" Clicked="OnAddCourseClicked" />
+                </Grid>
+
+                <CollectionView x:Name="CoursesCollection" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="0,3" Padding="12" HasShadow="False" BorderColor="LightGray">
+                                <Grid ColumnDefinitions="*,Auto,Auto">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="15" />
+                                        <Label Text="{Binding Code}" FontSize="13" TextColor="Gray" />
+                                        <Label Text="{Binding Semester}" FontSize="13" TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                    <Button Grid.Column="1"
+                                            Text="Manage"
+                                            WidthRequest="80"
+                                            Margin="4,0"
+                                            VerticalOptions="Center"
+                                            CommandParameter="{Binding Id}"
+                                            Clicked="OnManageCourseClicked" />
+                                    <Button Grid.Column="2"
+                                            Text="Delete"
+                                            WidthRequest="70"
+                                            BackgroundColor="#c62828"
+                                            VerticalOptions="Center"
+                                            CommandParameter="{Binding Id}"
+                                            Clicked="OnDeleteCourseClicked" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label x:Name="NoCoursesLabel"
+                       Text="No courses. Add a course to get started."
+                       TextColor="Gray"
+                       HorizontalOptions="Center"
+                       IsVisible="False" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

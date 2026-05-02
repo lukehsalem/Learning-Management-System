@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LMS.Pages.TeacherModuleContentPage"
+             Title="Module Content">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="12">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label x:Name="ModuleNameLabel" FontSize="18" FontAttributes="Bold" />
+            <Label x:Name="CourseNameLabel" FontSize="14" TextColor="Gray" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" x:Name="ContentCollection" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,4" Padding="12" HasShadow="False" BorderColor="LightGray">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="{Binding TypeLabel}" FontAttributes="Bold" FontSize="14" TextColor="#1565c0" />
+                                <Label Text="{Binding Detail}" FontSize="14" />
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1"
+                                    Text="Remove"
+                                    WidthRequest="80"
+                                    BackgroundColor="#c62828"
+                                    VerticalOptions="Center"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="OnRemoveContentClicked" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="EmptyLabel"
+               Grid.Row="1"
+               Text="No content in this module."
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="Gray"
+               IsVisible="False" />
+
+        <Button Grid.Row="2"
+                Text="+ Add Content"
+                Clicked="OnAddContentClicked" />
+
+    </Grid>
+
+</ContentPage>

@@ -303,8 +303,9 @@ public partial class TeacherCourseDetailPage : ContentPage
         var subIdx = Array.IndexOf(subOptions, chosen);
         var submission = assignment.Submissions[subIdx];
 
+        var fileInfo = submission.AttachedFileName != null ? $"\nAttached file: {submission.AttachedFileName}" : "";
         var gradeStr = await DisplayPromptAsync("Grade Submission",
-            $"Content: {submission.Content}\n\nGrade (points or %, e.g. '85' or '85%'):",
+            $"Content: {submission.Content}{fileInfo}\n\nGrade (points or %, e.g. '85' or '85%'):",
             keyboard: Keyboard.Numeric);
         if (gradeStr == null) return;
 

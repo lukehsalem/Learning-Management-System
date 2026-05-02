@@ -89,6 +89,8 @@
                                         <Label Text="{Binding DueDate, StringFormat='Due: {0:MM/dd/yyyy}'}"
                                                FontSize="13" TextColor="Gray" />
                                         <Label Text="{Binding GradeDisplay}" FontSize="13" TextColor="#1565c0" />
+                                        <Label Text="{Binding FileDisplay}" FontSize="12" TextColor="#558b2f"
+                                               IsVisible="{Binding HasFile}" />
                                     </VerticalStackLayout>
                                     <Button Grid.Column="1"
                                             Text="Submit"

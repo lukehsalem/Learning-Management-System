@@ -97,7 +97,8 @@ public partial class StudentCourseDetailPage : ContentPage
             else if (!sub.PointsAwarded.HasValue) gradeDisplay = "Submitted — awaiting grade";
             else gradeDisplay = $"{sub.PointsAwarded}/{a.AvailablePoints} pts";
 
-            return new { a.Id, a.Name, a.DueDate, GradeDisplay = gradeDisplay, a.IsQuiz };
+            string fileDisplay = sub?.AttachedFileName != null ? $"File: {sub.AttachedFileName}" : null;
+            return new { a.Id, a.Name, a.DueDate, GradeDisplay = gradeDisplay, a.IsQuiz, FileDisplay = fileDisplay, HasFile = fileDisplay != null };
         }).ToList();
 
         AssignmentsCollection.ItemsSource = null;
@@ -121,10 +122,25 @@ public partial class StudentCourseDetailPage : ContentPage
         var content = await DisplayPromptAsync(assignment.Name, prompt, "Submit", "Cancel", "Your response here...");
         if (content == null) return;
 
+        string attachedFilePath = null;
+        string attachedFileName = null;
+        bool attachFile = await DisplayAlert("Attach File", "Would you like to attach a file to this submission?", "Yes", "No");
+        if (attachFile)
+        {
+            var picked = await FilePicker.Default.PickAsync(new PickOptions { PickerTitle = "Select File to Attach" });
+            if (picked != null)
+            {
+                attachedFilePath = picked.FullPath;
+                attachedFileName = picked.FileName;
+            }
+        }
+
         if (existing != null)
         {
             existing.Content = content;
             existing.SubmissionDate = DateTime.Now;
+            existing.AttachedFilePath = attachedFilePath;
+            existing.AttachedFileName = attachedFileName;
         }
         else
         {
@@ -134,12 +150,15 @@ public partial class StudentCourseDetailPage : ContentPage
                 StudentId = _student.Id,
                 AssignmentId = assignment.Id,
                 Content = content,
-                SubmissionDate = DateTime.Now
+                SubmissionDate = DateTime.Now,
+                AttachedFilePath = attachedFilePath,
+                AttachedFileName = attachedFileName
             });
         }
 
         RefreshAssignments();
-        await DisplayAlert("Submitted", "Your response has been submitted.", "OK");
+        var msg = attachedFileName != null ? $"Submitted with file: {attachedFileName}" : "Your response has been submitted.";
+        await DisplayAlert("Submitted", msg, "OK");
     }
 
     private double CalculateCourseGrade()

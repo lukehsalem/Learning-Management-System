@@ -14,5 +14,7 @@ namespace MAUI.LMS.Models
         public List<AssignmentGroup> AssignmentGroups { get; set; } = new List<AssignmentGroup>();
         public List<Announcement> Announcements { get; set; } = new List<Announcement>();
         public GradeRange GradeRanges { get; set; } = new GradeRange();
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

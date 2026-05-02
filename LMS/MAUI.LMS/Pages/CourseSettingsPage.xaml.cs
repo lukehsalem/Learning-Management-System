@@ -29,6 +29,9 @@ public partial class CourseSettingsPage : ContentPage
 
         DMinEntry.TextChanged += (s, e) =>
             FLabel.Text = double.TryParse(DMinEntry.Text, out double d) ? $"Below {d:F0}%" : "Below ?%";
+
+        if (course.StartDate.HasValue) StartDatePicker.Date = course.StartDate.Value;
+        if (course.EndDate.HasValue) EndDatePicker.Date = course.EndDate.Value;
     }
 
     private async void OnSaveClicked(object sender, EventArgs e)
@@ -56,8 +59,10 @@ public partial class CourseSettingsPage : ContentPage
         course.GradeRanges.BMin = bMin;
         course.GradeRanges.CMin = cMin;
         course.GradeRanges.DMin = dMin;
+        course.StartDate = StartDatePicker.Date;
+        course.EndDate = EndDatePicker.Date;
 
-        await DisplayAlert("Saved", "Grade ranges updated.", "OK");
+        await DisplayAlert("Saved", "Settings updated.", "OK");
         await Shell.Current.GoToAsync("..");
     }
 }

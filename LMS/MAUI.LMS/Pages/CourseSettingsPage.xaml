@@ -50,6 +50,20 @@
 
             </Grid>
 
+            <BoxView HeightRequest="1" Color="LightGray" />
+
+            <Label Text="Semester Dates" FontSize="18" FontAttributes="Bold" />
+            <Label Text="Set the start and end dates for this semester."
+                   FontSize="14" TextColor="Gray" />
+
+            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" RowSpacing="12" ColumnSpacing="12">
+                <Label Grid.Row="0" Grid.Column="0" Text="Start Date" VerticalOptions="Center" FontSize="14" />
+                <DatePicker Grid.Row="0" Grid.Column="1" x:Name="StartDatePicker" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="End Date" VerticalOptions="Center" FontSize="14" />
+                <DatePicker Grid.Row="1" Grid.Column="1" x:Name="EndDatePicker" />
+            </Grid>
+
             <Button Text="Save Settings" Clicked="OnSaveClicked" />
 
         </VerticalStackLayout>

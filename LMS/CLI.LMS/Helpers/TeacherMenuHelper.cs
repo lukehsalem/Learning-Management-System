@@ -97,7 +97,12 @@ namespace CLI.LMS.Helpers
             } while (choice != "11");
         }
 
-        private void UpdateDescription(Course course) { }
+        private void UpdateDescription(Course course)
+        {
+            Console.Write("New Description: ");
+            course.Description = Console.ReadLine();
+            Console.WriteLine("Description updated.\n");
+        }
         private void EnrollStudent(Course course) { }
         private void UnenrollStudent(Course course) { }
         private void AddAssignment(Course course) { }

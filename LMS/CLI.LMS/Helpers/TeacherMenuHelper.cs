@@ -255,7 +255,59 @@ namespace CLI.LMS.Helpers
             course.Modules.Add(module);
             Console.WriteLine($"Module {module.Id} added.\n");
         }
-        private void ManageModuleContent(Course course) { }
+        private void ManageModuleContent(Course course)
+        {
+            if (course.Modules.Count == 0) { Console.WriteLine("No modules.\n"); return; }
+            foreach (var m in course.Modules)
+                Console.WriteLine($"  [{m.Id}] Module {m.Id} ({m.Content.Count} item(s))");
+            Console.Write("Enter Module Id: ");
+            if (!int.TryParse(Console.ReadLine(), out int id)) return;
+            var module = course.Modules.FirstOrDefault(m => m.Id == id);
+            if (module == null) { Console.WriteLine("Module not found.\n"); return; }
+
+            var choice = "";
+            do
+            {
+                Console.WriteLine($"\nModule {module.Id} Content:");
+                for (int i = 0; i < module.Content.Count; i++)
+                    Console.WriteLine($"  [{i + 1}] {module.Content[i]}");
+                Console.WriteLine("1. Add Content");
+                Console.WriteLine("2. Modify Content");
+                Console.WriteLine("3. Remove Content");
+                Console.WriteLine("4. Back");
+                choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write("Content: ");
+                        module.Content.Add(Console.ReadLine());
+                        Console.WriteLine("Content added.\n");
+                        break;
+                    case "2":
+                        if (module.Content.Count == 0) { Console.WriteLine("No content.\n"); break; }
+                        Console.Write("Enter position number: ");
+                        if (int.TryParse(Console.ReadLine(), out int pos) && pos >= 1 && pos <= module.Content.Count)
+                        {
+                            Console.Write("New content: ");
+                            module.Content[pos - 1] = Console.ReadLine();
+                            Console.WriteLine("Content updated.\n");
+                        }
+                        else Console.WriteLine("Invalid position.\n");
+                        break;
+                    case "3":
+                        if (module.Content.Count == 0) { Console.WriteLine("No content.\n"); break; }
+                        Console.Write("Enter position number: ");
+                        if (int.TryParse(Console.ReadLine(), out int removePos) && removePos >= 1 && removePos <= module.Content.Count)
+                        {
+                            module.Content.RemoveAt(removePos - 1);
+                            Console.WriteLine("Content removed.\n");
+                        }
+                        else Console.WriteLine("Invalid position.\n");
+                        break;
+                }
+            } while (choice != "4");
+        }
         private void DeleteCourse(Course course)
         {
             CourseService.Current.Delete(course);

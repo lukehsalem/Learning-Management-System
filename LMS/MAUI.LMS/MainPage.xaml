@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LMS.MainPage"
+             Title="Learning Management System">
+
+    <VerticalStackLayout Padding="40" Spacing="20" VerticalOptions="Center">
+
+        <Label Text="Learning Management System"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" />
+
+        <Label Text="Florida State University"
+               FontSize="16"
+               HorizontalOptions="Center"
+               TextColor="Gray" />
+
+        <BoxView HeightRequest="1" Color="LightGray" Margin="0,20" />
+
+        <Button Text="Student"
+                FontSize="18"
+                HeightRequest="60"
+                Clicked="OnStudentClicked" />
+
+        <Button Text="Teacher"
+                FontSize="18"
+                HeightRequest="60"
+                Clicked="OnTeacherClicked" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

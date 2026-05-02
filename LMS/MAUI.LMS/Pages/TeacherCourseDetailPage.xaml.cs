@@ -306,6 +306,35 @@ public partial class TeacherCourseDetailPage : ContentPage
         await DisplayAlert("Graded", $"Grade saved: {pts}/{assignment.AvailablePoints}", "OK");
     }
 
+    // --- Gradebook Export (ISSUE-48) ---
+
+    private async void OnExportGradebookClicked(object sender, EventArgs e)
+    {
+        if (_course.Roster.Count == 0 || _course.Assignments.Count == 0)
+        {
+            await DisplayAlert("Export Gradebook", "Course needs at least one student and one assignment.", "OK");
+            return;
+        }
+
+        var header = "Student," + string.Join(",", _course.Assignments.Select(a => Escape(a.Name)));
+        var rows = new List<string> { header };
+
+        foreach (var student in _course.Roster)
+        {
+            var cells = _course.Assignments.Select(a =>
+            {
+                var sub = a.Submissions.FirstOrDefault(s => s.StudentId == student.Id);
+                return sub?.PointsAwarded.HasValue == true ? sub.PointsAwarded.Value.ToString() : "";
+            });
+            rows.Add($"{Escape(student.Name)},{string.Join(",", cells)}");
+        }
+
+        var path = Path.Combine(FileSystem.AppDataDirectory,
+            $"gradebook_{_course.Code}_{_course.Semester?.Replace(" ", "_") ?? "nosem"}.csv");
+        File.WriteAllText(path, string.Join("\n", rows));
+        await DisplayAlert("Export Gradebook", $"Gradebook exported to:\n{path}", "OK");
+    }
+
     // --- Export / Import Assignments (ISSUE-46) ---
 
     private async void OnExportAssignmentsClicked(object sender, EventArgs e)

@@ -62,7 +62,10 @@
                     <Button Grid.Column="1" Text="+ Enroll" WidthRequest="80" Margin="4,0" Clicked="OnEnrollStudentClicked" />
                     <Button Grid.Column="2" Text="Import" WidthRequest="75" Clicked="OnImportRosterClicked" />
                 </Grid>
-                <Button Text="Export Roster (CSV)" Clicked="OnExportRosterClicked" HorizontalOptions="Start" />
+                <HorizontalStackLayout Spacing="8">
+                    <Button Text="Export Roster (CSV)" Clicked="OnExportRosterClicked" />
+                    <Button Text="Export Gradebook (CSV)" Clicked="OnExportGradebookClicked" />
+                </HorizontalStackLayout>
                 <CollectionView x:Name="RosterCollection" SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>

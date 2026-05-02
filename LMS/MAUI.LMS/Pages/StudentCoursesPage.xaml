@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LMS.Pages.StudentCoursesPage"
+             Title="My Courses">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="10">
+
+        <Label Grid.Row="0"
+               x:Name="StudentNameLabel"
+               FontSize="16"
+               Margin="0,0,0,10" />
+
+        <CollectionView Grid.Row="1"
+                        x:Name="CoursesCollection"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,4" Padding="14" HasShadow="False" BorderColor="LightGray">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding Code}" FontSize="13" TextColor="Gray" />
+                                <Label Text="{Binding Semester}" FontSize="13" TextColor="Gray" />
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1"
+                                    Text="View"
+                                    WidthRequest="80"
+                                    VerticalOptions="Center"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="OnViewCourseClicked" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Grid.Row="2"
+               x:Name="EmptyLabel"
+               Text="You are not enrolled in any courses."
+               HorizontalOptions="Center"
+               TextColor="Gray"
+               IsVisible="False" />
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.LMS.Pages.StudentSelectionPage"
+             Title="Select Student">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="10">
+
+        <Label Grid.Row="0"
+               Text="Select a student to continue:"
+               FontSize="16"
+               Margin="0,0,0,10" />
+
+        <CollectionView Grid.Row="1"
+                        x:Name="StudentsCollection"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,4" Padding="14" HasShadow="False" BorderColor="LightGray">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding Code}" FontSize="13" TextColor="Gray" />
+                                <Label Text="{Binding Classification}" FontSize="13" TextColor="Gray" />
+                            </VerticalStackLayout>
+                            <Button Grid.Column="1"
+                                    Text="Select"
+                                    WidthRequest="80"
+                                    VerticalOptions="Center"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="OnSelectStudentClicked" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Grid.Row="2"
+               x:Name="EmptyLabel"
+               Text="No students in the system. Ask a teacher to add students."
+               HorizontalOptions="Center"
+               TextColor="Gray"
+               IsVisible="False" />
+
+    </Grid>
+
+</ContentPage>
